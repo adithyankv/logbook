@@ -14,5 +14,4 @@ class LogbookApp(Gtk.Application):
 
     def do_activate(self) -> None:
         window = LogbookWindow(application=self)
-        window.set_default_size(200, 200)
         window.show_all()
