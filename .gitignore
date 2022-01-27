@@ -1,0 +1,6 @@
+# ignore virtualenv
+.venv
+
+# ignore compiled bytecode files
+__pycache__
+*.pyc
