@@ -4,3 +4,6 @@
 # ignore compiled bytecode files
 __pycache__
 *.pyc
+
+# ignore development files
+.mypy_cache
