@@ -1,4 +1,5 @@
 import gi
+from entry_item import EntryItem
 from headerbar import HeaderBar
 from journal_entries import JournalEntries
 
@@ -22,10 +23,9 @@ class LogbookWindow(Gtk.ApplicationWindow):
 
         entries = JournalEntries()
         for entry in entries:
-            entry_label = Gtk.Label(entry["MESSAGE"])
-            entry_label.props.halign = Gtk.Align.START
+            entry_data = EntryItem(message=entry["MESSAGE"])
+            entries_list.add(entry_data)
             separator = Gtk.Separator()
-            entries_list.add(entry_label)
             entries_list.add(separator)
 
         self.props.default_height = 400
