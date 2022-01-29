@@ -14,7 +14,7 @@ class LogbookWindow(Gtk.ApplicationWindow):
         self.set_application(application)
         self.create_layout()
 
-    def create_layout(self):
+    def create_layout(self) -> None:
         headerbar = HeaderBar()
         scrolled_window = Gtk.ScrolledWindow()
         entries_list = Gtk.Box(orientation=Gtk.Orientation.VERTICAL)
@@ -28,7 +28,7 @@ class LogbookWindow(Gtk.ApplicationWindow):
             separator = Gtk.Separator()
             entries_list.add(separator)
 
+        self.props.default_width = 600
         self.props.default_height = 400
-        self.props.default_width = 400
         self.set_titlebar(headerbar)
         self.add(scrolled_window)
