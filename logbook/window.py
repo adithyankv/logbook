@@ -23,7 +23,7 @@ class LogbookWindow(Gtk.ApplicationWindow):
 
         entries = JournalEntries()
         for entry in entries:
-            entry_data = EntryItem(message=entry["MESSAGE"])
+            entry_data = EntryItem(entry)
             entries_list.add(entry_data)
             separator = Gtk.Separator()
             entries_list.add(separator)

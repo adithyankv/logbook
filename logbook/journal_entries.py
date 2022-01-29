@@ -14,13 +14,23 @@ class JournalEntries:
     def __iter__(self) -> JournalEntries:
         return self
 
-    def __next__(self) -> dict:
+    def __next__(self) -> JournalEntry:
         if self.reversed:
-            entry = self.journal_reader.get_previous()
+            entry_data = self.journal_reader.get_previous()
         else:
-            entry = self.journal_reader.get_next()
+            entry_data = self.journal_reader.get_next()
 
-        if entry:
-            return entry
+        if entry_data:
+            return JournalEntry(entry_data)
         else:
             raise StopIteration
+
+
+class JournalEntry:
+    def __init__(self, entry: dict) -> None:
+        self.message = entry["MESSAGE"]
+        self.timestamp = entry["__REALTIME_TIMESTAMP"].strftime("%X")
+        try:
+            self.title = entry["SYSLOG_IDENTIFIER"]
+        except KeyError:
+            self.title = entry["_COMM"]

@@ -1,4 +1,5 @@
 import gi
+from journal_entries import JournalEntry
 
 gi.require_version("Gtk", "3.0")
 gi.require_version("Granite", "1.0")
@@ -7,11 +8,11 @@ from gi.repository import Granite, Gtk  # noqa: E402
 
 
 class EntryItem(Gtk.Grid):
-    def __init__(self, message: str) -> None:
+    def __init__(self, entry: JournalEntry) -> None:
         super().__init__()
-        self.name = "Title"
-        self.message = message
-        self.timestamp = "00:00:00"
+        self.name = entry.title
+        self.message = entry.message
+        self.timestamp = entry.timestamp
 
         self.create_layout()
 
@@ -21,6 +22,7 @@ class EntryItem(Gtk.Grid):
         title = Gtk.Label(self.name)
         title.get_style_context().add_class(Granite.STYLE_CLASS_H3_LABEL)
         title.props.halign = Gtk.Align.START
+        title.props.ellipsize = True
 
         body = Gtk.Label(self.message)
         body.get_style_context().add_class(Granite.STYLE_CLASS_H4_LABEL)
