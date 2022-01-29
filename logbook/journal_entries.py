@@ -42,9 +42,12 @@ class JournalEntry:
             self.title = entry["SYSLOG_IDENTIFIER"]
         except KeyError as id_error:
             try:
+                # journalctl seems to use this value in the absense of identifier
                 self.title = entry["_COMM"]
             except KeyError as comm_error:
                 self.title = ""
                 logging.error(
                     f"Couldn't retrieve name of sender \n{repr(id_error)}\n{repr(comm_error)}"
                 )
+
+        self.priority = entry["PRIORITY"]

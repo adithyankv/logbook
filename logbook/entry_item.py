@@ -13,6 +13,19 @@ class EntryItem(Gtk.Grid):
         self.name = entry.title
         self.message = entry.message
         self.timestamp = entry.timestamp
+        self.priority = entry.priority
+
+        # syslog priority levels
+        self.priority_levels = [
+            "Emergency",
+            "Alert",
+            "Critical",
+            "Error",
+            "Warning",
+            "Notice",
+            "Info",
+            "Debug",
+        ]
 
         self.create_layout()
 
@@ -32,6 +45,17 @@ class EntryItem(Gtk.Grid):
         timestamp.props.hexpand = True
         timestamp.props.halign = Gtk.Align.END
 
+        priority = Gtk.Label(f"priority:{self.priority_levels[self.priority]}")
+        priority.props.halign = Gtk.Align.START
+        priority_style = priority.get_style_context()
+        if self.priority < 3:
+            priority_style.add_class(Gtk.STYLE_CLASS_ERROR)
+        elif self.priority < 5:
+            priority_style.add_class(Gtk.STYLE_CLASS_WARNING)
+        else:
+            priority_style.add_class(Gtk.STYLE_CLASS_INFO)
+
         self.attach(title, 0, 0, 1, 1)
         self.attach(timestamp, 1, 0, 1, 1)
         self.attach(body, 0, 1, 1, 1)
+        self.attach(priority, 0, 2, 1, 1)
