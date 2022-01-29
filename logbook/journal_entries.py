@@ -1,5 +1,7 @@
 from __future__ import annotations
 
+import logging
+
 from systemd import journal
 
 
@@ -29,8 +31,20 @@ class JournalEntries:
 class JournalEntry:
     def __init__(self, entry: dict) -> None:
         self.message = entry["MESSAGE"]
-        self.timestamp = entry["__REALTIME_TIMESTAMP"].strftime("%X")
+
+        try:
+            self.timestamp = entry["__REALTIME_TIMESTAMP"].strftime("%X")
+        except KeyError as e:
+            logging.error(f"Couldn't retrieve timestamp of sender {repr(e)}")
+            exit()
+
         try:
             self.title = entry["SYSLOG_IDENTIFIER"]
-        except KeyError:
-            self.title = entry["_COMM"]
+        except KeyError as id_error:
+            try:
+                self.title = entry["_COMM"]
+            except KeyError as comm_error:
+                self.title = ""
+                logging.error(
+                    f"Couldn't retrieve name of sender \n{repr(id_error)}\n{repr(comm_error)}"
+                )
