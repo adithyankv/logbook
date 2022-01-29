@@ -24,8 +24,3 @@ class JournalEntries:
             return entry
         else:
             raise StopIteration
-
-
-journal_entries = JournalEntries()
-for entry in journal_entries:
-    print(entry["MESSAGE"])
