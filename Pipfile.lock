@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "e5a2d85bbc5836caa5e7c358a1e1e8b3a63a665dd082ed99500f6533b2635897"
+            "sha256": "8ed252181654986b1bc74e6b141e4a7adb6bcea863cae85df517fa7972725e48"
         },
         "pipfile-spec": 6,
         "requires": {
@@ -39,6 +39,13 @@
             ],
             "index": "pypi",
             "version": "==3.42.0"
+        },
+        "systemd-python": {
+            "hashes": [
+                "sha256:fd0e44bf70eadae45aadc292cb0a7eb5b0b6372cd1b391228047d33895db83e7"
+            ],
+            "index": "pypi",
+            "version": "==234"
         }
     },
     "develop": {

@@ -5,6 +5,7 @@ name = "pypi"
 
 [packages]
 pygobject = "*"
+systemd-python = "*"
 
 [dev-packages]
 python-lsp-server = "*"
