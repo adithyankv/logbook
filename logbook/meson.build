@@ -1,6 +1,8 @@
+# getting directories to install files in
 pkgdatadir = join_paths(get_option('prefix'), get_option('datadir'), meson.project_name())
 moduledir = join_paths(pkgdatadir, 'logbook')
 
+# checking dependencies
 python = import('python')
 
 message('Looking for dependencies')
@@ -16,6 +18,7 @@ dependency ('gtk+-3.0')
 dependency ('glib-2.0')
 dependency ('gobject-2.0')
 
+# configuring the entry point executable file
 conf = configuration_data()
 conf.set('PYTHON', python_bin.path())
 conf.set('pkgdatadir', pkgdatadir)
