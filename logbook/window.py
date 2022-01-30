@@ -1,11 +1,11 @@
 import gi
 from entry_item import EntryItem
+from entry_list import EntryList
 from headerbar import HeaderBar
-from journal_entries import JournalEntries
 
 gi.require_version("Gtk", "3.0")
 
-from gi.repository import Gtk  # noqa: E402
+from gi.repository import GObject, Gtk  # noqa: E402
 
 
 class LogbookWindow(Gtk.ApplicationWindow):
@@ -15,20 +15,13 @@ class LogbookWindow(Gtk.ApplicationWindow):
         self.create_layout()
 
     def create_layout(self) -> None:
-        headerbar = HeaderBar()
-        scrolled_window = Gtk.ScrolledWindow()
-        entries_list = Gtk.Box(orientation=Gtk.Orientation.VERTICAL)
-
-        scrolled_window.add(entries_list)
-
-        entries = JournalEntries()
-        for entry in entries:
-            entry_data = EntryItem(entry)
-            entries_list.add(entry_data)
-            separator = Gtk.Separator()
-            entries_list.add(separator)
-
         self.props.default_width = 600
         self.props.default_height = 400
+
+        headerbar = HeaderBar()
+        scrolled_window = Gtk.ScrolledWindow()
+        entry_list = EntryList()
+
+        scrolled_window.add(entry_list)
         self.set_titlebar(headerbar)
         self.add(scrolled_window)

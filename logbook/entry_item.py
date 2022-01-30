@@ -1,5 +1,5 @@
 import gi
-from journal_entries import JournalEntry
+from journal_manager import Entry
 
 gi.require_version("Gtk", "3.0")
 gi.require_version("Granite", "1.0")
@@ -8,7 +8,7 @@ from gi.repository import Granite, Gtk  # noqa: E402
 
 
 class EntryItem(Gtk.Grid):
-    def __init__(self, entry: JournalEntry) -> None:
+    def __init__(self, entry: Entry) -> None:
         super().__init__()
         self.name = entry.title
         self.message = entry.message

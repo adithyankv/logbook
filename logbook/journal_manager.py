@@ -5,30 +5,24 @@ import logging
 from systemd import journal
 
 
-class JournalEntries:
-    def __init__(self, reversed: bool = True) -> None:
+class Journal:
+    def __init__(self) -> None:
         self.journal_reader = journal.Reader()
-        self.reversed = reversed
-        if self.reversed:
-            self.journal_reader.seek_tail()
         self.journal_reader.this_boot()
 
-    def __iter__(self) -> JournalEntries:
+    def __iter__(self) -> Journal:
         return self
 
-    def __next__(self) -> JournalEntry:
-        if self.reversed:
-            entry_data = self.journal_reader.get_previous()
-        else:
-            entry_data = self.journal_reader.get_next()
+    def __next__(self) -> Entry:
+        entry_data = self.journal_reader.get_next()
 
         if entry_data:
-            return JournalEntry(entry_data)
+            return Entry(entry_data)
         else:
             raise StopIteration
 
 
-class JournalEntry:
+class Entry:
     def __init__(self, entry: dict) -> None:
         self.message = entry["MESSAGE"]
 
