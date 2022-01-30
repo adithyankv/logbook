@@ -1,5 +1,6 @@
 import gi
-from window import LogbookWindow
+
+from logbook.window import LogbookWindow
 
 gi.require_version("Gtk", "3.0")
 

@@ -1,5 +1,6 @@
 import gi
-from journal_manager import Entry
+
+from logbook.journal_manager import Entry
 
 gi.require_version("Gtk", "3.0")
 gi.require_version("Granite", "1.0")

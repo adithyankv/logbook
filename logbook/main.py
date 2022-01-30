@@ -1,11 +1,11 @@
 import sys
 from typing import List
 
-import application
+from logbook.application import LogbookApp
 
 
 def main(*args: List[str]) -> int:
-    app = application.LogbookApp()
+    app = LogbookApp()
     return app.run(*args)
 
 

@@ -1,7 +1,8 @@
 import gi
-from entry_item import EntryItem
-from entry_list import EntryList
-from headerbar import HeaderBar
+
+from logbook.entry_item import EntryItem
+from logbook.entry_list import EntryList
+from logbook.headerbar import HeaderBar
 
 gi.require_version("Gtk", "3.0")
 

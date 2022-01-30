@@ -1,6 +1,7 @@
 import gi
-from entry_item import EntryItem
-from journal_manager import Journal
+
+from logbook.entry_item import EntryItem
+from logbook.journal_manager import Journal
 
 gi.require_version("Gtk", "3.0")
 
