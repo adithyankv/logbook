@@ -16,7 +16,8 @@ class EntryItem(Gtk.Grid):
         self.timestamp = entry.timestamp
         self.priority = entry.priority
 
-        # syslog priority levels
+        # syslog priority levels along with an unknown case for entries with no
+        # specified priority
         self.priority_levels = [
             "Emergency",
             "Alert",
@@ -26,6 +27,7 @@ class EntryItem(Gtk.Grid):
             "Notice",
             "Info",
             "Debug",
+            "Unknown",
         ]
 
         self.create_layout()

@@ -2,7 +2,7 @@ from __future__ import annotations
 
 import logging
 
-from systemd import journal
+from systemd import journal  # type: ignore
 
 
 class Journal:
@@ -44,4 +44,8 @@ class Entry:
                     f"Couldn't retrieve name of sender \n{repr(id_error)}\n{repr(comm_error)}"
                 )
 
-        self.priority = entry["PRIORITY"]
+        try:
+            self.priority = entry["PRIORITY"]
+        except KeyError:
+            # using custom priority level for unknown priority
+            self.priority = 8
